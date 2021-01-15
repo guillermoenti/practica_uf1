@@ -1,0 +1,43 @@
+Guión vídeo práctica de sistemas informaticos uf1
+
+- Para mostrar como instalar Debian, antes crearé una máquina virtual para ello. Primero se debedebe crear la máquina, le daremos un nombre /*Nombrarla "DebianPractica"/*, seleccionamos la ruta donde queremos guardarla /*Ponerla en la ruta por defecto/*, y elegiremos el tipo de sistema operativo y versión o distribución que queramos. En este caso la distribución de Linux, Debian /*Seleccionar Linux - Debian(64-bit)./*Next/*
+
+Ahora, seleccionaremos la memoria RAM que queremos otorgarle a nuestra máquina virtual, en caso de tener menos de 8 GB  de RAM, es recomendable dejarlo en 1024 MB, en mi caso, al tener 8 GB cederé 2048 MB de RAM, que es lo recomendable de 8 GB en adelante. /*Poner 2048 MB/* /*Next/*
+
+Creamos un disco duro virutal. /*Crear/*
+
+A continuación debemos escojer el tipo de archivo de disco duro, puesto que no vamos a utilizar otro servicio de virtualización, elejiremos el própio de VirtualBox, VDI. /*Next/*
+
+En cuanto al almacenamiento en unidad de disco duro física, dejaremos seleccionado el disco duro reservado dinámicamente, esto significa que el archivo en nuestro ordenador que representa el disco duro de nuestra máquina virtual irá aumentando de tamaño a medida que nostros lo llenemos, por tanto, a menos que descarguemos muchos archivos, no debería ocupar demasiado espacio. /*Next/*
+
+Ahora seleccionaremos la ubicación de nuestra unidad de disco duro, y la memória que le queremos reservar, para esta práctica ofreceremos 32 GB. /*Escribir 32 GB /* /*Next/*
+
+Ya tenemos nuestra máquina virtual, aunque aún nos falta configurarla un poco./*Ir a configuración/*
+
+/*Ir a Sistema/* En el apartado Placa Base de la sección Sistema deseleccionaremos el orden de arranque por disquete, ya que no lo vamos a utilizar en absoluto./*Deseleccionar disquete/*
+
+Siguiendo con la sección de Sistema, en el apartado Procesador, /*Ir al apartado Procesador/* otorgaremos 2 procesadores a la máquina virtual. /*Ir a pantalla/*
+
+En cuanto a la pantalla, daremos un poco más de memoria de video, con 64 MB está bien /*Escribir 64 MB/*
+
+Por último, añadiremos el archivo .iso, emulando como cuando ponemos un DVD en la instalación de un sistema operativo. /*Seleccionar archivo, está en Descargas/* /*Aceptar/*
+
+Ahora ya tenemos la máquina virtual configurada, vamos a comenzar con la instalación de Debian. /*Iniciar/*
+
+
+Seleccionamos el disco que queremos utilizar para la instalación, en este caso, el archivo .iso que hemos añadido anteriormente /*Seleccionar el archivo/* /*Iniciar/*
+
+En este caso, queremos hacer una instalación normal, no una gráfica. /*Seleccionar Install/*
+
+Lo primero que vamos a configurar es el idioma del sistema operativo, seleccionaremos inglés, ya que en caso de que ocurra algún fallo, ya sea durante la instalación o cuando la utilicemos, buscar soluciones a esos errores va a ser mucho más fácil o directamente posible, en inglés /*Seleccionar English/*
+
+Ahora, si que elegiremos nuestro país, puesto que en este caso nos preguntan la localización para configurar la zona horaria y otros parámetros. /*Other/* /*Europe/* /*Spain/*
+
+Al seleccionar en un principio el sistema en inglés, no nos queda otra que elegir la configuración local predeterminada de Estados Unidos. /*Seleccionar United States - en_US.UTF-8/*
+
+El keymap, por comodidad, elegiremos el que más nos guste, en mi caso el español. /*Seleccionar Spanish/*
+
+
+
+
+
