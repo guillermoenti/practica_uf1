@@ -2,7 +2,7 @@ Guión vídeo práctica de sistemas informaticos uf1
 
 - Para mostrar como instalar Debian, antes crearé una máquina virtual para ello. Primero se debedebe crear la máquina, le daremos un nombre /*Nombrarla "DebianPractica"/*, seleccionamos la ruta donde queremos guardarla /*Ponerla en la ruta por defecto/*, y elegiremos el tipo de sistema operativo y versión o distribución que queramos. En este caso la distribución de Linux, Debian /*Seleccionar Linux - Debian(64-bit)./*Next/*
 
-Ahora, seleccionaremos la memoria RAM que queremos otorgarle a nuestra máquina virtual, en caso de tener menos de 8 GB  de RAM, es recomendable dejarlo en 1024 MB, en mi caso, al tener 8 GB cederé 2048 MB de RAM, que es lo recomendable de 8 GB en adelante. /*Poner 2048 MB/* /*Next/*
+Ahora, seleccionaremos la memoria RAM que queremos otorgarle a nuestra máquina virtual, en caso de tener menos de 8 GB  de RAM, es recomendable dejarlo en 1024 MB, si tienes 8 GB de RAM o más, como es mi caso, se recomienda ponerle 2048 MB. /*Poner 2048 MB/* /*Next/*
 
 Creamos un disco duro virutal. /*Crear/*
 
@@ -37,7 +37,123 @@ Al seleccionar en un principio el sistema en inglés, no nos queda otra que eleg
 
 El keymap, por comodidad, elegiremos el que más nos guste, en mi caso el español. /*Seleccionar Spanish/*
 
+Ahora pasamos a la sección de usuarios.
+
+El hostname es el nombre por el cual se reconoce a tu máquina, para poder saber de quién es la máquina virtual, es recomendable que pongamos nuestro nombre. /*Escribir guille/*
+
+Antes de continuar, decir que con la telca <Intro> confirmas lo que hayas seleccionado o escrito, mientras que con el <Tabulador> te mueves entre menún, como en este caso, <Go back> y <Continue>, esto nos será últil más adelante. /*Intro/*
+
+El nombre de dominio es para trabajar en una red, en nuestro caso, lo dejaremos en blanco. /*Intro/*
+
+Ahora nos pide una contraseña para el usuario root. Todas las contraseñas y nombres de usuario les pondremos "enti" para que nos sea más facil compartir nuestras máquinas virtuales entre compañeros, aunque no es nada recomendable ese método para máquinas personales. /*Escribir enti/*
+
+Para ver lo que hemos escrito y asegurarnos de que está bien, podemos tabular hasta llegar a "Show Password in Clear" y pulsar la tecla <Espacio> ya que sirve para marcar y desmarcar casillas. /*Tab hasta Show Password in Clear/* /*Espacio/* /*Tab hasta Continue/* /*Intro/*
+
+Ahora nos pedirá de confirmar la contraseña. /*Repite la contraseña/*
+
+En esta parte te preguntará tu nombre completo, esto no es el nombre de usuario y se usará para asuntos no-administrativos, como programas que usen un nombre, como por ejemplo, para referirse a ti. /*Escribe Guillermo/*
+
+Ahora sí que piden nombre de usuario, y te dejan tu propio nombre en minusculas por comodidad, aunque como hemos dicho antes, pondremos enti. /*Escribir enti/* /*Continuar/*
+
+Pondremos y confirmaremos contraseña, como siempre, enti. /*Continuar/*
+
+En este caso seleccionamos zona horaria para configurar el reloj. /*Madrid/*
 
 
+Y ahora pasamos a un punto importante, las particiones. Las particiones consisten en dividir el disco, o discos duros en secciones con una función concreta a partir de un punto de montaje, este último término se explicará más adelante.
+Es importante pararse a organizar bien las particiones de tu disco duro porque esto hará dos cosas principalente. La primera, te ayudará a organizar mejor tus discos duros y sobre todo, evitar que se fragmenten, por ejemplo, en ningún caso deberías querer tener tu carpeta tmp, la carpeta donde se guardan los archivos temporales que se borran cada cierto tiempo, junto a tu carpeta boot que contiene todo lo relativo al arranque de tu sistema. 
+La segunda ventaja de las particiones, es que pueden aumentar el rendimiendo de tu ordenador, esto también se explicará un poco más adelante.
+
+Dicho esto, seleccionaremos a partición manual ya que sabemos lo que queremos. /*Seleccionar manual/*
+
+Para empezar a particionar, debemos seleccionar la opción SCSI3 /*Seleccionar SCSI3/*
+Y seleccionar que queremos crear una nueva partición vacía /*Seleccionar Yes/*
+
+Ahora, cada vez que queramos crear una partición nueva, seleccionaremos está opción de aquí. /*Ponerse encima de pri/log /*
+
+Ahora bien, vamos a pararnos un momento a pensar qué partición queremos primera, segunda, tercera, etc, porque el orden importa. 
+Las particiones más importantes son:
+/root - que tiene todos los directorios del sistema.
+/home - dónde guardaremos nuestros archivos
+/opt - donde se descargan los programas que instalemos
+/boot - que contiene todos los arhcivos de arranque del sistema
+/tpm - donde se guardan archivos temporales
+y por último SWAP, que es un directorio inaccesible que guarda información copiada directamente de la tarjeta RAM cuando ésta no tiene má espacio para nuevos programas.
+
+Ahora voy a ir creando las particiones en el orden correcto y voy a justificar el porqué. /*Selecciona pri/log/*
+
+La primera partición que vamos a crear es /boot, ya que al estar al principio del disco duro, al encenderse el ordenador, la aguja que lee el disco duro no tardará en llegar a leer la información que hay en boot, que recuerdo que se encarga del arrangue del sistema.
+
+Creamos una nueva partición/*Create a new partition/*
+
+Boot no contiene demasiados archivos ni son muy grandes, y con 32 GB de disco duro, 512 MB es lo mínimo que se debería poner, así que eso es lo que le reservaremos ya es suficiente. /Escribir 512 MB/* /*Intro/*
+
+Puesto que es nuestra primera partición, la haremos primaria, el resto serán lógicas. Esto fue un método de particiones creado por Microsoft y que el resto de sistemas operativos han tenido que incluir por ser compatibles con Windows. /*Primary/*
+
+Como hemos dicho antes, queremos que esté al principio /*Beginning/*
+
+Bien, el <Use as> es para qué queremos usar esa partición, en todos los casos menos en uno queremos que sea un sistema de ficheros y en este caso, el Ext4 es el mejor para lo que necesitamos.
+
+/*Bajar a Mount Point/* En este caso, el punto de montaje es el inicio de este sistema de ficheros, que dice al sistema para que lo queremos usar, pudiendo así hacer optimizaciones para su uso. Como hemos dicho antes, queremos que esta partición sea el /boot. /*Seleccionar boot/*
+
+Ya estaríamos con la primera partición./*Seleccionar Done/*
+
+La segunda partición que queremos colocar adecuadamente es SWAP. Si colocamos a SWAP al final del disco duro, por una vuelta de disco que haga, la aguja leerá más información, haciendo así que la tranferencia de datos sea más rapida. Por tanto, repetimos el proceso anterior. /*pri/log/*/* /*Create new/*
+
+Para otorgar espacio a la partición SWAP, hay una norma que se debería dar el doble, al llegar a 4 poner el doble sería demasiado y se recomienda la mitad. En nuestro caso, le pondremos justo lo que tiene, 2GB /*Poner 2 GB/*
+
+Elegimos lógica ya que ya tenemos una primaria /*Seleccionar logica/*
+Como hemos dicho antes, la ponemos al final /*End/*
+
+Y la queremos usar como swap area /*Use as/* /*Swap area/* /*Done/*
+
+A partir de ahora, las demás particiones no son tan importantes e iremos yendo hacia el principio y hacia el final a cada partición que hagamos. /*pri/log/*
+
+La siguiente particion es root y le reservaremos 16 GB /*Escribir 16/* /*Logical/* /*Beggining/*
+
+Ahora, detrás de swap pondremos la carpeta temporal, ya que como está constantemente borrando y añadiendo datos, ya nos va bien que escriba más datos por revolución de disco.
+
+Con 512 MB ya está bien
+
+La siguiente despues de root es opt, a esta partición le cederemos 2 GB ya que algunos programas pueden llegar a ser pesados 
+
+Por ultimo, el resto de espacio se lo daremos a home
+
+Con esto habremos acabado de crear las particiones. /*Finish/*
+
+Ahora nos preguntará si queremos escanear otro CD o DVD, cosa que no nos interesa. /*No/*
+
+La siguiente cosa a configurar es a qué repositorio queremos conectarnos para recibir el paquete de versiones de todos los programas, en mi caso seleccionaré deb.debian.org /*Seleccionar/*
+
+No queremos nada de un HTTP rpoxy así que dejamos este campo en blanco /*Enter/*
+
+Esta ventana, en resumidas cuentas, es para ofrecer enviar información a Debian para saber que programas se usan más y así saber cuales mantener y cuales no, como no daremos un uso de trabajo ni personal, no enviaremos datos. /*Enter/*
+
+Ya casi hemos terminado, ahora, como somos masoquistas, deseleccionaremos el apartado donde nos instalaría un entorno gráfico, ya que todo lo que vamos a hacer será a través de la consola de comandos, y también deseleccionaremos el print server, solo queremos lo básico. /*Deseleccionar eso/*
+
+Para acabar, nos preguntará si queremos instalar el GRUB, el grub básicamente controla qué sistema operativo o versión quieres iniciar cuando arrancas el ordenador, nostros lo instalaremos. Seleccionaremos el .iso que teníamos antes.
+
+Y con esto hemos terminado de instalar Debian.
 
 
+Ahora:
+
+> su
+> enti
+> apt-get install cowsay ffmpeg imagemagick Vim
+> Y
+> exit
+
+Voy a crear una directorio para hacer el ejercicio del audio.
+> mkdir apartado_audio
+> cd apartado_audio/
+
+Primero me descargaré el video, simplemente debemos usar el comando wget y poner el link:
+> wget http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+> ls -lastr
+
+Ahora convertiré el video a MKV.
+> ffmpeg -i BigBuckBunny.mp4 BigBuckBunny.mkv
+
+Y para extraer el audio:
+> ffmpeg -i BigBuckBunny.mkv BigBuckBunny.mp3
